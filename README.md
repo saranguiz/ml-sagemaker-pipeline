@@ -1,64 +1,29 @@
-A Pytorch image classifier with pretrained models that can be fine-tuned on a custom dataset.
+# AWS Sagemaker pipeline for object counting
 
-## Pre-requisites
+## Summary
 
-- Python version `3.9` or greater
+Efficient inventory management is the cornerstone of successful distribution centers. As the items handling process becomes increasingly automated, counting objects in stock or delivery bins has emerged as a technical challenge. To address this, the potential of Computer Vision and Machine Learning offer a promising solution to the challenges of analyzing images and accurately count objects.
 
-- Libraries: `torch`, `torchvision`, `argparse`, `Pillow` (can be installed with `pip`)
+This project is the final assessment to complete the AWS Machine Learning Engineer Nanodegree at Udacity. See more details in the project's proposal and report documents.
 
-## Model
+## Pipeline on AWS Sagemaker
+The technical implementation of the engineering pipeline on [AWS Sagemaker](https://aws.amazon.com/sagemaker/) is presented on the project’s core notebook: 
 
-The `train` script is currently implemented to work with a `resnet50` model imported from the Pytorch's torchvision library. 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**[sagemaker.ipynb](./sagemaker.ipynb)** 
 
-```model = resnet50(weights=ResNet50_Weights.IMAGENET1K_V1)```
+The details of each step of the ML pipeline are described in the following sections:
+* Dataset EDA ([see notebook](./Dataset_EDA.ipynb))
+* Models benchmark ([see notebook](./Models_benchmark.ipynb))
+* Train script ([see script](./train/README.md))
+* Hyperparameter Optimization ([see report]())
+* Debugging and profiling ([see report]())
+* Deployment and inference
 
-Nevertheless, a different pre-trained model can be imported and used for training. Check more details in the [Pytorch website](https://pytorch.org/vision/stable/models.html#classification) in order to pick another model.
+## Image prediction
+End-users of the system can invoke the production endpoint and query the prediction of images on [this website](https://sebastian.aranguiz.de/predict):
 
-Loss function: [`CrossEntropyLoss`](https://pytorch.org/docs/stable/generated/torch.nn.CrossEntropyLoss.html)
+![image](ui.png)
 
-## Classifier training
+## Contact
+📫 How to reach me: [sebastian.aranguiz.de](https://sebastian.aranguiz.de/) 
 
-- The number of categories needs to be adjusted in this line:
-
-    ```num_features = N```
-
-- While the model gets trained, its loss and accuracy gets evaluated during the training and validation phase.
-
-- The model is saved only if the validation accuracy is higher than in previous epochs.
-
-- Testing is done at the end with the model version that best performed in the validation phase. Testing loss and accuracy is calculated against a subset never seen before.
-
-## Dataset
-
-- The main data directory must be in the repository's root directory
-- The images used for training, validation and testing must be in their respective sub-folders ordered by categories.
-
-    ```
-    |-- data_dir
-    |   |-- test
-    |   |   |-- 1
-    |   |   |-- 2
-    |   |   |-- 3
-    |   |   |-- 4
-    |   |   |-- 5
-    |   |-- train
-    |   |   |-- 1
-    |   |   |-- 2
-    |   |   |-- 3
-    |   |   |-- 4
-    |   |   |-- 5
-    |   |-- valid
-    |   |   |-- 1
-    |   |   |-- 2
-    |   |   |-- 3
-    |   |   |-- 4
-    |   |   |-- 5
-    ```
-
-- For splitting a dataset into testing, training and validation subsets, the [`split-folders`](https://github.com/jfilter/split-folders) library might be helpful.
-
-## Training execution
-
-Run:
-
-<code>python3 train.py ./data_dir --epochs [N] --lr [LR] --batch_size [BS]</code>

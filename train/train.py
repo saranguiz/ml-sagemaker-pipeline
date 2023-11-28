@@ -4,7 +4,7 @@ import torch.nn as nn
 import torch.optim as optim
 import torchvision
 import torchvision.transforms as transforms
-from torchvision.models import resnet50, ResNet50_Weights
+from torchvision.models import resnext101_32x8d, ResNeXt101_32X8D_Weights
 import argparse
 import os
 import logging
@@ -83,7 +83,7 @@ def train(model, epochs, train_loader, validation_loader, criterion, optimizer):
     return model
     
 def net():
-    model = resnet50(weights=ResNet50_Weights.IMAGENET1K_V1)
+    model = resnext101_32x8d(weights=ResNeXt101_32X8D_Weights.DEFAULT)
 
     for param in model.parameters():
         param.requires_grad = False
