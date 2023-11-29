@@ -14,13 +14,13 @@ The technical implementation of the engineering pipeline on [AWS Sagemaker](http
 The details of each step of the ML pipeline are described in the following sections:
 * Dataset EDA ([see notebook](./Dataset_EDA.ipynb))
 * Models benchmark ([see notebook](./Models_benchmark.ipynb))
-* Train script ([see script](./train/README.md))
+* Training, validation and testing algorithms ([see script](./train/README.md))
 * Hyperparameter Optimization ([see report]())
 * Debugging and profiling ([see report]())
 * Deployment and inference
 
 ## Image prediction
-End-users of the system can invoke the production endpoint and query the prediction of images on [this website](https://sebastian.aranguiz.de/predict):
+End-users of the system can invoke the production endpoint and query the prediction of images on [this website](https://sebastian.aranguiz.de/ml/predict):
 
 ![image](ui.png)
 

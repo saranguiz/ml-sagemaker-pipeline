@@ -1,8 +1,8 @@
-This script is an image classifier implemented with Pytorch that makes use of pretrained models that can be fine-tuned on a custom dataset.
+The scripts used in this project are based on an image classifier implemented with Pytorch that makes use of pretrained models that can be fine-tuned on a custom dataset.
 
 ## Pre-requisites
 
-- Python version `3.9` or greater
+- Python version `3.6` or greater
 
 - Libraries: `torch`, `torchvision`, `argparse`, `Pillow` (can be installed with `pip`)
 
@@ -10,7 +10,7 @@ This script is an image classifier implemented with Pytorch that makes use of pr
 
 As a result of the [models benchmark](../benchmark/README.md), the `train` script was implemented to work with a `ResNeXt-101` model imported from the Pytorch's torchvision library. 
 
-```model = resnext101_32x8d(weights=ResNeXt101_32X8D_Weights.DEFAULT)```
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;```model = resnext101_32x8d(weights=ResNeXt101_32X8D_Weights.DEFAULT)```
 
 Loss function: [`CrossEntropyLoss`](https://pytorch.org/docs/stable/generated/torch.nn.CrossEntropyLoss.html)
 
@@ -55,12 +55,17 @@ Loss function: [`CrossEntropyLoss`](https://pytorch.org/docs/stable/generated/to
 
 - For splitting the dataset into testing, training and validation subsets, the [`split-folders`](https://github.com/jfilter/split-folders) library was very helpful.
 
-## Training execution
+## Scripts variants
 
-From notebook: 
+### train.py
+Base script that can run locally in any machine. I'd suggest to run experiments with a minimal dataset in a first stage. This way results of the model training are very quick and one gets familiar with the training algorithm for future debugging or enhancements. Source of the project: [pytorch-image-classifier](https://github.com/saranguiz/pytorch-image-classifier)
 
+To run locally: 
 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;```python3 train.py ./data_dir --epochs [N] --lr [LR] --batch_size [BS]```
 
-Running locally:
+### hpo.py
+Script to be used specifically for Hyperparameter Optimization. It's based on `train.py` and has the ability to access environment variables that AWS Sagemaker uses.
 
-<code>python3 train.py ./data_dir --epochs [N] --lr [LR] --batch_size [BS]</code>
+### train_debug.py
+Script to be used specifically for Debugging and Profiling. It's based on `train.py` and has the ability to access environment variables that AWS Sagemaker uses. In addition, it makes Inference possible (TBD).
