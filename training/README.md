@@ -14,7 +14,7 @@ As a result of the [models benchmark](../benchmark/README.md), the `train` scrip
 
 Loss function: [`CrossEntropyLoss`](https://pytorch.org/docs/stable/generated/torch.nn.CrossEntropyLoss.html)
 
-## Classifier training
+## Classifier
 
 - The number of categories is set in this line:
 
@@ -68,4 +68,4 @@ To run locally:
 Script to be used specifically for Hyperparameter Optimization. It's based on `train.py` and has the ability to access environment variables that AWS Sagemaker uses. Also, a few adjustment has been made to add logging functionality and work with AWS Sagemaker configuration and cloud environment.
 
 ### train_debug.py
-Script to be used specifically for Debugging and Profiling. It's based on `train.py` and has the ability to access environment variables that AWS Sagemaker uses. In addition, it makes Inference possible (TBD).
+Script to be used specifically for Debugging and Profiling. It's based on `hpo.py` and implements hooks for debugging and profiling both training and validation phases.
