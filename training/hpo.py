@@ -37,7 +37,7 @@ def test(model, test_loader, criterion):
         )
     )
 
-def train(model, epochs, train_loader, validation_loader, criterion, optimizer):
+def train(model, epochs, train_loader, validation_loader, criterion, optimizer, model_dir):
     best_acc = 0.0
     for epoch in range(epochs):
         model.train()
@@ -74,7 +74,7 @@ def train(model, epochs, train_loader, validation_loader, criterion, optimizer):
         model_saved=False
         if valid_acc > best_acc:
             best_acc = valid_acc
-            torch.save(model.state_dict(), 'model.pth')
+            torch.save(model.state_dict(), os.path.join(model_dir, "model.pth"))
             model_saved=True
         print(
             "EPOCH {}: \t Training Loss: {:.4f} \t Training Accuracy: {:.2f}% \t Validation Loss: {:.4f} \t Validation Accuracy: {}/{} ({:.0f}%) \t Model saved? {}".format(
@@ -131,9 +131,9 @@ def main(args):
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.Adam(model.fc.parameters(), lr=args.lr)
     logger.info(f'Starting Model Training')
-    model=train(model, args.epochs, train_loader, validation_loader, criterion, optimizer)
+    model=train(model, args.epochs, train_loader, validation_loader, criterion, optimizer, args.model_dir)
 
-    model.load_state_dict(torch.load('model.pth'))
+    model.load_state_dict(torch.load(os.path.join(args.model_dir, "model.pth")))
     test(model, test_loader, criterion)
 
     elapsed_time = time.time() - tic
