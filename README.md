@@ -17,6 +17,7 @@ The details of each step of the ML pipeline are described in the following secti
 * Training, validation and testing ([see section](./training/README.md))
     * Hyperparameter Optimization
     * Debugging and profiling ([see report]())
+* Deployment and inference ([see section](./deployment/README.md))
 
 ## Image prediction
 End-users of the system can invoke the production endpoint and query the prediction of images on [this website](https://sebastian.aranguiz.de/ml/predict):

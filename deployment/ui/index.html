@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Viewer</title>
+    <style>
+        body {
+            margin: 0 auto;
+            width: 50%;
+            text-align: center;
+            transition: background-color 0.3s;
+            background-color: #444;
+            color: #fff;
+        }              
+        #selectedImage {
+            display: none;
+        }
+        #loadingIndicator {
+            display: none;
+        }
+        button {
+            display: inline;
+            text-align: center;
+            margin-left:auto;
+            margin-right:auto;
+        }
+        .image-container {
+            margin: 0 auto;
+            width: 50%;
+        }
+        .request-response {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }    
+    </style>
+</head>
+<body>
+    <h1>Object Counting in images</h1>
+    This prediction service tells how many items are present in an image.<br><br>
+    <select id="imageSelector">
+        <option value="">-- Select an image --</option>
+        <option value="https://aft-vbi-pds.s3.amazonaws.com/bin-images/10460.jpg">1 object</option>
+        <option value="https://aft-vbi-pds.s3.amazonaws.com/bin-images/06258.jpg">2 objects</option>
+        <option value="https://aft-vbi-pds.s3.amazonaws.com/bin-images/103013.jpg">3 objects</option>
+        <option value="https://aft-vbi-pds.s3.amazonaws.com/bin-images/04729.jpg">4 objects</option>
+        <option value="https://aft-vbi-pds.s3.amazonaws.com/bin-images/08898.jpg">5 objects</option>
+    </select>
+    <br><br>
+    <div id="imageContainer" class="image-container">
+        <img id="selectedImage" alt="Selected Image">
+        <div id="loadingIndicator">Loading...</div>
+        <br><br>
+        <button id="predictButton" style="display: none;" onclick="sendImageUrl()" class="button">Predict image class</button>
+        <div id="requestResults" style="display: none;" class="request-response">
+            <h3>Request</h3>
+            <pre id="request"></pre>
+
+            <h3>Response</h3>
+            <p id="response">
+        </div>
+    </div>
+
+    <script>
+        const imageSelector = document.getElementById('imageSelector');
+        const selectedImage = document.getElementById('selectedImage');
+        const loadingIndicator = document.getElementById('loadingIndicator');
+
+        imageSelector.addEventListener('change', () => {
+            const selectedUrl = imageSelector.value;
+
+            if (selectedUrl) {
+                loadingIndicator.style.display = 'block';
+                selectedImage.style.display = 'none';
+                
+                const image = new Image();
+                image.src = selectedUrl;
+
+                image.onload = () => {
+                    // Image loaded successfully
+                    selectedImage.src = selectedUrl;
+                    selectedImage.style.display = 'block';
+                    loadingIndicator.style.display = 'none';
+                    predictButton.style.display = 'block';
+                    requestResults.style.display = 'none';
+                };
+
+                image.onerror = () => {
+                    // Handle image loading error
+                    loadingIndicator.style.display = 'none';
+                    alert('Error loading image. Please try again.');
+                };
+            } else {
+                // If the user selects the empty state
+                selectedImage.style.display = 'none';
+                loadingIndicator.style.display = 'none';
+                predictButton.style.display = 'none';
+                requestResults.style.display = 'none';
+            }
+        });
+
+        predictButton.addEventListener('click', () => {
+                requestResults.style.display = 'block';
+            });
+
+        const endpointUrl = 'https://tw0f1yz0e3.execute-api.us-east-1.amazonaws.com/predict';
+
+        function sendImageUrl() {
+            const selectedImageUrl = document.getElementById('selectedImage').getAttribute('src');
+            const body = {
+                url: selectedImageUrl
+            };
+            const method = 'POST';
+            const headers = {
+                    'Content-Type': 'application/json'
+                };
+
+            let reqDetails = method + ' ' + endpointUrl + '\n';
+            reqDetails += 'Headers: ' + JSON.stringify(headers) + '\n';
+            reqDetails += 'Body: ' + JSON.stringify(body);
+            document.getElementById('request').innerText = reqDetails;
+
+            fetch(endpointUrl, {
+                method: method,
+                headers: headers,
+                body: body
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('response').innerText = JSON.stringify(data, null, 2);
+            })
+            .catch(error => console.error('Error sending request:', error));
+        }
+    </script>
+</body>
+</html>
