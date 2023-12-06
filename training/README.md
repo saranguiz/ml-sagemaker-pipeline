@@ -1,3 +1,5 @@
+# Training, validation and testing
+
 The scripts used in this project are based on an image classifier implemented with Pytorch that makes use of pretrained models that can be fine-tuned on a custom dataset.
 
 ## Pre-requisites

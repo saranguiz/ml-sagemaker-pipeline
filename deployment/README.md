@@ -35,7 +35,11 @@ A successful response looks like:
 ```
 
 ## Public invokations
-API Gateway allows the creation of APIs to back-end systems running on AWS Lambda. Therefore, it fits our purpose to serve preditions requests public users. Here is some steps to create a basic API on this AWS service:
+API Gateway allows the creation of APIs to back-end systems running on AWS Lambda. Therefore, it fits our purpose to serve predictions requests coming from public users. 
+
+![image](./api_gateway_diagram.png)
+
+Here is some steps to create a basic API on this AWS service:
 * Choose to build a "HTTP API".
 * Give your API a name, e.g., `object-counting-api`.
 * Skip the routes creation for now.
@@ -53,11 +57,11 @@ Finally, test the newly created endpoint with a few POST requests:
 curl -d '{"url": "https://aft-vbi-pds.s3.amazonaws.com/bin-images/10460.jpg"}' -H "Content-Type: application/json" -X POST https://your_api_id.execute-api.us-east-1.amazonaws.com/predict
 ```
 
-## Web app
-* Go to: [https://sebastian.aranguiz.de/ml/predict](https://sebastian.aranguiz.de/ml/predict) 
-* From the dropdown menu, select an image with objects between 1-5
-* Submit the image and wait for the prediction
+## Public web app
+Check the [index.html](./ui/index.html) page implementation (JavaScript) for more details about how this simple web app queries our public endpoint.
 
-Check the [index.html](./page.html) page implementation (JavaScript) for more details about how this simple web app queries our public endpoint.
+* Go to: [https://sebastian.aranguiz.de/ml/predict](https://sebastian.aranguiz.de/ml/predict) 
+* From the dropdown menu, select any image with 1 to 5 objects
+* Submit the image and wait for the class prediction
 
 ![image](./ui/ui.png)
