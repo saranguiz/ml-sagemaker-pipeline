@@ -10,7 +10,7 @@ The scripts used in this project are based on an image classifier implemented wi
 
 ## Model
 
-As a result of the [models benchmark](../benchmark/README.md), the `train` script was implemented to work with a `ResNeXt-101` model imported from the Pytorch's torchvision library. 
+As a result of the [models benchmark](../models_benchmark/Models_benchmark.ipynb), the `train` script was implemented to work with a `ResNeXt-101` model imported from the Pytorch's torchvision library. 
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;```model = resnext101_32x8d(weights=ResNeXt101_32X8D_Weights.DEFAULT)```
 
@@ -28,7 +28,7 @@ Loss function: [`CrossEntropyLoss`](https://pytorch.org/docs/stable/generated/to
 
 - Testing is done at the end with the model version that best performed in the validation phase. Testing loss and accuracy is calculated against a subset never seen before.
 
-## Dataset
+## Dataset split
 
 - The main data folder and the train script must be in the same directory
 - The images used for training, validation and testing must be in their respective sub-folders ordered by categories.

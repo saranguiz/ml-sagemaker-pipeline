@@ -12,8 +12,8 @@ Note that the [`inference.py`](./inference.py) script plays a key role when perf
 
 It's also important to:
 * Provide permissions to access Sagemaker
-* Update the script code with the corresponding endpoint name
-* Test the lambda function once deployed passing different urls as this JSON schema (output from API Gateway):
+* Update the script code with the corresponding endpoint name and deploy it
+* Test the lambda function passing different urls using the following JSON schema (output from API Gateway):
 
 ```
 {
@@ -58,7 +58,7 @@ curl -d '{"url": "https://aft-vbi-pds.s3.amazonaws.com/bin-images/10460.jpg"}' -
 ```
 
 ## Public web app
-Check the [index.html](./ui/index.html) page implementation (JavaScript) for more details about how this simple web app queries our public endpoint.
+Check the [index.html](https://github.com/saranguiz/ml-sagemaker-pipeline/blob/main/deployment/ui/index.html) page implementation (JavaScript) for more details about how this simple web app queries our public endpoint.
 
 * Go to: [https://sebastian.aranguiz.de/ml/predict](https://sebastian.aranguiz.de/ml/predict) 
 * From the dropdown menu, select any image with 1 to 5 objects
