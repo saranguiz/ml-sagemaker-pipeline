@@ -67,7 +67,7 @@ To run locally:
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;```python3 train.py ./data_dir --epochs [N] --lr [LR] --batch_size [BS]```
 
 ### hpo.py
-Script to be used specifically for Hyperparameter Optimization. It's based on `train.py` and has the ability to access environment variables that AWS Sagemaker uses. Also, a few adjustment has been made to add logging functionality and work with AWS Sagemaker configuration and cloud environment.
+Script to be used specifically for Hyperparameter Optimization. It's based on `train.py` and has the ability to access environment variables that AWS Sagemaker uses. Also, a few adjustments have been made to add logging functionality and work with AWS Sagemaker configuration and cloud environment.
 
 ### train_debug.py
 Script to be used specifically for Debugging and Profiling. It's based on `hpo.py` and implements hooks for debugging and profiling both training and validation phases.

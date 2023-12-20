@@ -64,4 +64,6 @@ Check the [index.html](https://github.com/saranguiz/ml-sagemaker-pipeline/blob/m
 * From the dropdown menu, select any image with 1 to 5 objects
 * Submit the image and wait for the class prediction
 
+Note: Due to computing resources constrains, the model has been trained for a few eppchs for demonstration purposes. Therefore, the predictions will probably not be accurate at this time. 
+
 ![image](./ui/ui.png)

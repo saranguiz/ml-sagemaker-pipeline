@@ -6,7 +6,7 @@ Efficient inventory management is the cornerstone of successful distribution cen
 
 This project is the final assessment to complete the AWS Machine Learning Engineer Nanodegree at Udacity. See more details in the project's [proposal](./proposal.pdf) and [report](./report.pdf) documents.
 
-## Pipeline on AWS Sagemaker
+## ML Pipeline on AWS Sagemaker
 The technical implementation of the engineering pipeline on [AWS Sagemaker](https://aws.amazon.com/sagemaker/) is presented on the project’s core notebook: 
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**[sagemaker.ipynb](./sagemaker.ipynb)** 
@@ -17,8 +17,8 @@ The details of each step of the ML pipeline are described in the following secti
 * Training, validation and testing ([see section](./training/README.md))
     * Model used for image classification
     * Dataset split
-    * Hyperparameter Optimization
-    * Debugging and profiling
+    * Hyperparameter Optimization script
+    * Debugging and profiling script
 * Deployment and inference ([see section](./deployment/README.md))
 
 ## Image prediction
