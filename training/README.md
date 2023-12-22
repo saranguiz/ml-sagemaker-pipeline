@@ -10,7 +10,7 @@ The scripts used in this project are based on an image classifier implemented wi
 
 ## Model
 
-As a result of the [models benchmark](../models_benchmark/Models_benchmark.ipynb), the `train` script was implemented to work with a `ResNeXt-101` model imported from the Pytorch's torchvision library. 
+As a result of the [models benchmark](../Models_benchmark.ipynb), the `train` script was implemented to work with a `ResNeXt-101` model imported from the Pytorch's torchvision library. 
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;```model = resnext101_32x8d(weights=ResNeXt101_32X8D_Weights.DEFAULT)```
 
